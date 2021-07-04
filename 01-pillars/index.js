@@ -1,48 +1,34 @@
-/*
-Açıklama:
-
-Aşağıda bir kitaplık(Bookshelf) class'ının temel bir hali verilmiştir.
-1) Ogrendiginiz bilgilere dayanarak, getFavoriteBooks, loadBooks metodlarını bu class içine taşıyınız.
-Ipucu: this
-
-2) benimKitapligim adinda yeni bir değiskene Bookshelf class'inin bir instance'ini oluşturunuz. Bu instance olusmasi aninda apiURL'in class'a gecmesini saglayiniz.
-Ipucu: constructor, new keyword
-
-3) class instance'i olustugu anda loadBooks metodu, getBooksFromFakeAPI metodunu benimKitapligim degiskeninin olusturuldugu zaman verilen apiURL ile cagirmali ve oradan donen kitapları class'da bir değişkende tutmalı.
-
-4) isFavoriteBook kitabı kitap adında "JS" geçiyorsa true dönmeli.
-Ipucu: Coercion
-5) benimKitapligim degiskeni olustuktan sonra sirasıyla hemen ve 3 sn sonra olmak uzere benimKitapligim.getFavoriteBooks cagrilmali.
-Ipucu: setTimeout 
-6) getFavoriteBooks cagrildigi zaman eger kitaplar yuklenmedi ise console.log ile "Kitaplar yuklenmedi" yazmalı
-
-7) getFavoriteBooks cagrildigi zaman eget kitaplar yuklendi ise console.log ile favori kitaplarınız; diyip içinde "JS" geçen kitapları yazmalı.
-
-
-*/
-
 class Bookshelf {
-    isFavoriteBook(bookName) {
-        // Kitabın içinde "JS" geçiyorsa favoridir.
+    constructor(apiURL){
+        this.apiURL = apiURL;
+        this.books = [];
+        // Initiate book data fetching
+        this.loadBooks();
     }
 
+    isFavoriteBook(bookName) {
+        return bookName.includes("JS");
+    }
+    
+    getFavoriteBooks(){
+        if(this.books.length){
+            console.log(
+                "Favori kitaplarınız : " +
+                this.books.filter( book =>{ 
+                    return this.isFavoriteBook(book.toString())
+                })
+            ); 
+        }
+        else console.log("Kitaplar Yüklenmedi");
+    }
+    
+    loadBooks(){
+        getBooksFromFakeAPI(apiURL,books=>{
+            this.books = books;
+        });
+    }
 }
 
-
-function getFavoriteBooks() {
-    console.log('favori kitaplarınız;');
-}
-
-function loadBooks() {
-
-}
-
-// benimkitapligim = ...
-// benimkitapligim.getFavoriteBooks()
-setTimeout(function() { benimkitapligim.getFavoriteBooks() }, 301);
-var apiURL = 'somefake.url/getBooks';
-
-/* Lütfen buradan aşağısını değiştirmeyin  */
 function getBooksFromFakeAPI(apiURL, onBooksLoad) {
     setTimeout(function() {
         onBooksLoad([
@@ -55,3 +41,13 @@ function getBooksFromFakeAPI(apiURL, onBooksLoad) {
         ]);
     }, 300);
 }
+
+
+const API_URL = 'somefake.url/getBooks';
+const benimkitapligim = new Bookshelf(API_URL);
+
+// Initiate call
+benimkitapligim.getFavoriteBooks();
+// Fake-response delay (3s)
+setTimeout(()=>{benimkitapligim.getFavoriteBooks();},3000);
+
