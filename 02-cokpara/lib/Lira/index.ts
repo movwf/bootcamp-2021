@@ -19,17 +19,23 @@ const parseLira = (val: string | number) => {
         result = "NaN"; 
     }
     else{
+        let pointCount = 1;
         for(let i = valString.length; i > 0; i--){
+            // Every 3 number add point to top.
+            if(i == valString.length - ( 3 * pointCount )){
+                result = "." + result;
+                pointCount ++;
+            }
             // Add number to top
             result = valString[i-1] + result;
-            // Every 3 number add point to top.
-            if(i % 3 == 0 & i != valString.length){ 
-                result = "." + result;
-            }
         }
     }
     
     return result + "TL";
  }
+ 
+ export const parseFromLira = (liraString: string) => {
+    return parseInt(liraString.substr(0,liraString.length-2).split(".").join(""))
+ } 
  
  export default parseLira;
