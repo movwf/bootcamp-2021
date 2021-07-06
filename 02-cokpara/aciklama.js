@@ -28,23 +28,40 @@ const productList = [
   },
   {
     id: 3,
+    name: "Nvidia RTX 3090",
+    price: 45000,
+    img: "https://cdn.vatanbilgisayar.com/Upload/PRODUCT/msi/thumb/109368_large.jpg",
+  },
+  {
+    id: 4,
+    name: "Bitcoin",
+    price: 295000,
+    img: "https://i.sozcu.com.tr/wp-content/uploads/2021/05/20/iecrop/shutterstock_1682134423_16_9_1614005607-880x495-1_16_9_1618810385_16_9_1619157189_16_9_1621505154.jpg",
+  },
+  {
+    id: 5,
     name: "Yat",
     price: 450000,
     img: "https://i.ytimg.com/vi/9BCZpcgsAb8/maxresdefault.jpg",
   },
   {
-    id: 4,
+    id: 6,
     name: "Bahceli Ev",
     price: 9500000,
     img: "https://www.neredekal.com/res/blog/1582812421_7.jpg",
   },
   {
-    id: 5,
+    id: 7,
     name: "Araba Fabrikası",
     price: 120000000,
     img: "https://i.ytimg.com/vi/rfMkp55oTv0/maxresdefault.jpg",
   },
-  // ... Kendi örneklerinizi eklemeye çekinmeyin.
+  {
+    id: 8,
+    name: "Quantum Bilgisayar",
+    price: 200000000,
+    img: "https://venturebeat.com/wp-content/uploads/2020/09/d-wave-advantage-system.jpeg?fit=1600%2C800&strip=all",
+  },
 ];
 
 export default productList;
